@@ -6,7 +6,7 @@ var index = function(req, res, next){
     if (err) {
       res.json({message: err});
     } else {
-      res.render('users/index', {users: users});
+      res.json({users: users});
     }
   });
 };
@@ -18,7 +18,7 @@ var show = function(req, res, next){
     } else if (!user) {
       res.json({message: 'No user with this id.'});
     } else {
-      res.render('users/show', {user: user});
+      res.json({user: user});
     }
   });
 };

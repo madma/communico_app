@@ -1,4 +1,5 @@
 var express      = require('express');
+var cors         = require('cors');
 var path         = require('path');
 var favicon      = require('serve-favicon');
 var logger       = require('morgan');
@@ -27,6 +28,8 @@ app.locals.title = app.get('title');
 // Logging layer.
 app.use(logger('dev'));
 
+app.use(cors());
+
 // Helper layer (parses the requests, and adds further data).
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -43,7 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(debugReq);
 
 // Defines all of our "dynamic" routes.
-app.use('/', routes);
+app.use('/api', routes);
 
 // Catches all 404 routes.
 app.use(function(req, res, next) {
@@ -57,7 +60,7 @@ app.use(function(err, req, res, next) {
   // In development, the error handler will print stacktrace.
   err = (app.get('env') === 'development') ? err : {};
   res.status(err.status || 500);
-  res.render('error', {
+  res.json('error', {
     message: err.message,
     error: err
   });

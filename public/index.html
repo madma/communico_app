@@ -19,10 +19,10 @@
   <h1>Communico App</h1>
 
   <div>
-    <form ng-submit="vm.submitLink()">
+    <form ng-submit="vm.submitLink(vm.article)">
       <div class="form-group">
         <label for="input-link">Article Link</label>
-        <input ng-model="vm.articleUrl" type="link" class="form-control" id="input-link" placeholder="http://www.nytimes.com/2016/03/13/opinion/sunday/the-superior-social-skills-of-bilinguals.html">
+        <input ng-model="vm.article.articleUrl" type="link" class="form-control" id="input-link" placeholder="http://www.nytimes.com/2016/03/13/opinion/sunday/the-superior-social-skills-of-bilinguals.html">
       </div>
       <button type="submit" class="btn btn-default">Submit</button>
     </form>

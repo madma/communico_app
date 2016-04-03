@@ -12,13 +12,25 @@
 
       // BINDINGS
       vm.articleUrl = "";
+      vm.article = {
+        articleUrl: vm.articleUrl
+      };
 
       vm.submitLink = submitLink;
 
       // HELPERS
-      function submitLink() {
+      function submitLink(data) {
         $log.info("Submitting the article link...");
-
+        $log.info("DATA is: ", data);
+        $http({
+          method: "POST",
+          url: "/api/articles",
+          data: JSON.stringify(data),
+          headers: {"Content-Type": "application/json"}
+        })
+        .then(function(res) {
+          $log.info("RESPONSE IS: ", res.data);
+        });
 
 
       }

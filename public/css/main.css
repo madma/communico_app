@@ -1,7 +1,7 @@
 *,
 html,
 body {
-  box-sizing: border-box;
+  /*box-sizing: border-box;*/
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -13,9 +13,10 @@ body {
 
 a { color: #00B7FF; }
 
-/*div#sign-up-or-log-in {
-  text-align: center;
-}*/
+div#sign-up-or-log-in {
+  width: 100%;
+  position: relative;
+}
 
 form.sign-up, form.log-in {
   display: inline-block;
@@ -26,10 +27,13 @@ form.sign-up, form.log-in {
   margin-top: 50px;
 }
 
-form.sign-up {
-  border-right: 1px solid black;
-}
-
 form > h2 {
   margin-bottom: 50px;
+}
+
+span.vertical-divider {
+  position: absolute;
+  height: 90%;
+  border: 1px solid black;
+  margin-top: 70px;
 }

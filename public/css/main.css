@@ -8,6 +8,28 @@ body {
 body {
   font-size: 14px;
   padding: 50px;
+  text-align: center;
 }
 
 a { color: #00B7FF; }
+
+/*div#sign-up-or-log-in {
+  text-align: center;
+}*/
+
+form.sign-up, form.log-in {
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+  width: 400px;
+  padding: 0 50px;
+  margin-top: 50px;
+}
+
+form.sign-up {
+  border-right: 1px solid black;
+}
+
+form > h2 {
+  margin-bottom: 50px;
+}

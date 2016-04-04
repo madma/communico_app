@@ -15,17 +15,56 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.js"></script>
 
 </head>
-<body ng-controller="Controller as vm" class="container-fluid">
+<body class="container-fluid">
   <h1>Communico App</h1>
 
-  <div>
-    <form ng-submit="vm.submitLink(vm.article)">
-      <div class="form-group">
-        <label for="input-link">Article Link</label>
-        <input ng-model="vm.article.articleUrl" type="link" class="form-control" id="input-link" placeholder="http://www.nytimes.com/2016/03/13/opinion/sunday/the-superior-social-skills-of-bilinguals.html">
-      </div>
-      <button type="submit" class="btn btn-default">Submit</button>
-    </form>
+  <div id="sign-up-or-log-in">
+    <span class="sign-up form">
+      <form class="sign-up">
+        <h2>Sign Up</h2>
+        <div class="form-group">
+          <label for="first-name">First Name</label>
+          <input type="text" class="form-control" id="first-name" placeholder="First Name">
+        </div>
+        <div class="form-group">
+          <label for="last-name">Last Name</label>
+          <input type="text" class="form-control" id="last-name" placeholder="Last Name">
+        </div>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username" placeholder="Username">
+        </div>
+        <div class="form-group">
+          <label for="email-address">Email Address</label>
+          <input type="email" class="form-control" id="email-address" placeholder="Email Address">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Password">
+        </div>
+        <div class="form-group">
+          <label for="password-confirmation">Password Confirmation</label>
+          <input type="password" class="form-control" id="password-confirmation" placeholder="Password Confirmation">
+        </div>
+        <button type="submit" class="btn btn-default">Sign Up</button>
+      </form>
+    </span>
+
+
+    <span class="log-in form">
+      <form class="log-in">
+        <h2>Log In</h2>
+        <div class="form-group">
+          <label for="username-or-email">Username or Email Address</label>
+          <input type="text" class="form-control" id="username-or-email" placeholder="Username or Email Address">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-default">Log In</button>
+      </form>
+    </span>
   </div>
 
   <script src="/js/app.module.js"></script>

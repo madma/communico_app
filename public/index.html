@@ -9,6 +9,9 @@
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css">
   <link rel="stylesheet" href="/css/main.css">
 
+  <!-- If you must use outside libs that aren't Angular-specific, include them BEFORE Angular. -->
+  <script src="/js/vendor/jwt-decode.2.0.1.js"></script>
+
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
   <script src="https://code.angularjs.org/1.5.3/angular-resource.js"></script>
   <script src="https://code.angularjs.org/1.5.3/angular-sanitize.js"></script>
@@ -16,59 +19,40 @@
 
 </head>
 <body class="container-fluid">
+
+  <header ng-controller="NavbarController as vm">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <a ui-sref="welcome" class="navbar-brand">Communico</a>
+        <div class="pull-right">
+          <!-- <button ng-show="vm.authService.isLoggedIn();" ui-sref="profile" type="button" class="btn btn-default navbar-btn"><i class="glyphicon glyphicon-cog"></i> Profile</button> -->
+          <!-- <button ng-hide="vm.authService.isLoggedIn();" ui-sref="signin" type="button" class="btn btn-default navbar-btn navbar-right">Sign in</button> -->
+          <button ng-click="vm.logOut();" ng-show="vm.authService.isLoggedIn()" type="button" class="btn btn-default navbar-btn navbar-right">Sign out</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
   <h1>Communico App</h1>
 
-  <div id="sign-up-or-log-in">
-    <span class="sign-up form">
-      <form class="sign-up">
-        <h2>Sign Up</h2>
-        <div class="form-group">
-          <label for="first-name">First Name</label>
-          <input type="text" class="form-control" id="first-name" placeholder="First Name">
-        </div>
-        <div class="form-group">
-          <label for="last-name">Last Name</label>
-          <input type="text" class="form-control" id="last-name" placeholder="Last Name">
-        </div>
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" class="form-control" id="username" placeholder="Username">
-        </div>
-        <div class="form-group">
-          <label for="email-address">Email</label>
-          <input type="email" class="form-control" id="email-address" placeholder="Email">
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" id="password" placeholder="Password">
-        </div>
-        <div class="form-group">
-          <label for="password-confirmation">Password Confirmation</label>
-          <input type="password" class="form-control" id="password-confirmation" placeholder="Password Confirmation">
-        </div>
-        <button type="submit" class="btn btn-default">Sign Up</button>
-      </form>
-    </span>
+  <main ui-view class="content">
+    <!-- ui.router inserts templates here -->
+  </main>
 
-    <span class="vertical-divider"></span>
+  <script src="/js/app/app.module.js"></script>
+  <script src="/js/app/config/app.debug.js"></script>
+  <script src="/js/app/config/app.httpInterceptors.js"></script>
+  <script src="/js/app/config/app.routes.js"></script>
+  <script src="/js/app/config/jsonHeaders.service.js"></script>
+  <script src="/js/app/config/tokenSigning.service.js"></script>
+  <script src="/js/app/config/authErrorRedirect.service.js"></script>
+  <script src="/js/app/layouts/navbar.controller.js"></script>
+  <script src="/js/app/auth/token.service.js"></script>
+  <script src="/js/app/auth/auth.service.js"></script>
+  <script src="/js/app/auth/signin.controller.js"></script>
+  <script src="/js/app/user/user.service.js"></script>
+  <script src="/js/app/user/profile.controller.js"></script>
+  <script src="/js/app/article/articles.controller.js"></script>
 
-    <span class="log-in form">
-      <form class="log-in">
-        <h2>Log In</h2>
-        <div class="form-group">
-          <label for="username-or-email">Username or Email</label>
-          <input type="text" class="form-control" id="username-or-email" placeholder="Username/Email">
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" id="password" placeholder="Password">
-        </div>
-        <button type="submit" class="btn btn-default">Log In</button>
-      </form>
-    </span>
-  </div>
-
-  <script src="/js/app.module.js"></script>
-  <script src="/js/controller.js"></script>
 </body>
 </html>

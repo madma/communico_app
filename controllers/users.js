@@ -19,8 +19,10 @@ function create(req, res, next) {
     }).catch(function(err) {
       if (err.message.match(/E11000/)) {
         err.status = 409;
+        return res.status(409).send("User already exists.");
       } else {
         err.status = 422;
+        return res.status(422).send("Error handling sign up form data.");
       }
       next(err);
     });

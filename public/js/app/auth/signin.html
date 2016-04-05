@@ -1,23 +1,23 @@
 <div id="sign-up-or-log-in">
   <span class="sign-up form">
-    <form ng-submit="vm.submitSignUp();" class="sign-up">
+    <form ng-submit="vm.submitSignUp();" class="sign-up" name="signUpForm" novalidate>
       <h2>Sign Up</h2>
       <div class="form-group">
         <label for="first-name">First Name</label>
-        <input ng-model="vm.signUp.firstName" type="text" class="form-control" id="first-name" placeholder="First Name">
+        <input ng-model="vm.signUp.firstName" type="text" class="form-control" id="first-name" placeholder="First Name" required>
       </div>
       <div class="form-group">
         <label for="last-name">Last Name</label>
-        <input ng-model="vm.signUp.lastName" type="text" class="form-control" id="last-name" placeholder="Last Name">
+        <input ng-model="vm.signUp.lastName" type="text" class="form-control" id="last-name" placeholder="Last Name" required>
       </div>
       <div class="form-group">
         <label for="username">Username</label>
-        <input ng-model="vm.signUp.username" ng-class="{'red-border': vm.conflict}" type="text" class="form-control" id="username" placeholder="Username">
+        <input ng-model="vm.signUp.username" ng-class="{'red-border': vm.conflict}" type="text" class="form-control" id="username" placeholder="Username" required>
         <small ng-show="vm.conflict" class="text-danger"><em>Username already exists...</em></small>
       </div>
       <div class="form-group">
         <label for="email-address">Email</label>
-        <input ng-model="vm.signUp.email" ng-class="{'red-border': vm.conflict}" type="email" class="form-control" id="email-address" placeholder="Email">
+        <input ng-model="vm.signUp.email" ng-class="{'red-border': vm.conflict}" type="email" class="form-control" id="email-address" placeholder="Email" required>
         <small ng-show="vm.conflict" class="text-danger"><em>Email already exists...</em></small>
       </div>
       <div class="form-group">
@@ -26,26 +26,29 @@
       </div>
       <div class="form-group">
         <label for="password-confirmation">Password Confirmation</label>
-        <input ng-model="vm.signUp.passwordConfirmation" type="password" class="form-control" id="password-confirmation" placeholder="Password Confirmation">
+        <input ng-model="vm.signUp.passwordConfirmation" type="password" class="form-control" id="password-confirmation" placeholder="Password Confirmation" required>
       </div>
-      <button type="submit" class="btn btn-default">Sign Up</button>
+      <button ng-disabled="signUpForm.$invalid" type="submit" class="btn btn-default">Sign Up</button>
     </form>
   </span>
 
   <span class="vertical-divider"></span>
 
   <span class="log-in form">
-    <form ng-submit="vm.submitLogIn();" class="log-in">
+    <form ng-submit="vm.submitLogIn();" class="log-in" name="logInForm" novalidate>
       <h2>Log In</h2>
       <div class="form-group">
         <label for="username-or-email">Username or Email</label>
-        <input ng-model="vm.logIn.email_username" type="text" class="form-control" id="username-or-email" placeholder="Username/Email">
+        <input ng-model="vm.logIn.email_username" ng-class="{'red-border': vm.invalidLogin}" type="text" class="form-control" id="username-or-email" placeholder="Username/Email" required>
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input ng-model="vm.logIn.password" type="password" class="form-control" id="password" placeholder="Password">
+        <input ng-model="vm.logIn.password" ng-class="{'red-border': vm.invalidLogin}" type="password" class="form-control" id="password" placeholder="Password" required>
       </div>
-      <button type="submit" class="btn btn-default">Log In</button>
+      <button ng-disabled="logInForm.$invalid" type="submit" class="btn btn-default">Log In</button>
+      <div>
+        <small ng-show="vm.invalidLogin" class="text-danger"><em>Please check your login details.</em></small>
+      </div>
     </form>
   </span>
 </div>

@@ -18,7 +18,8 @@ div#sign-up-or-log-in {
   position: relative;
 }
 
-form.sign-up, form.log-in {
+form.sign-up,
+form.log-in {
   display: inline-block;
   vertical-align: top;
   text-align: left;
@@ -36,4 +37,8 @@ span.vertical-divider {
   height: 90%;
   border: 1px solid black;
   margin-top: 70px;
+}
+
+.red-border {
+  border: 2px solid red;
 }

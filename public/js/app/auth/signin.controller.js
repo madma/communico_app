@@ -26,6 +26,7 @@
     };
     vm.submitLogIn = submitLogIn;
     vm.conflict = false;
+    vm.invalidLogin = false;
 
     // FUNCTIONS
     function submitSignUp() {
@@ -60,6 +61,7 @@
           },
           // on error
           function(err) {
+            if (err.status === 403) vm.invalidLogin = true;
             $log.debug('Error:', err);
           }
         );

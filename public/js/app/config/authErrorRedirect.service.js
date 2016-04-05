@@ -5,9 +5,9 @@
     .module("app")
     .factory("authErrorRedirect", authErrorRedirect);
 
-  authErrorRedirect.$inject = ["$log", "$q"];
+  authErrorRedirect.$inject = ["$log", "$q", "$injector"];
 
-  function authErrorRedirect($log, $q) {
+  function authErrorRedirect($log, $q, $injector) {
     return {
       responseError: readStatusAndHandleAuthError
     };
@@ -22,8 +22,8 @@
       // If you ever get a 401 or 403 (no authentication or
       // bad authorization) error, redirect to the sign in page.
       if (err.status === 401 || err.status === 403) {
-        $log.debug(`${status} response received! Redirecting user to signin.`);
-        $state.go('signin');
+        $log.debug(`${status} response received! Redirecting user to welcome.`);
+        $injector.get('$state').go('welcome');
       }
 
       // Now that we've done our due diligence, pass the error through

@@ -10,14 +10,17 @@
   function appRoutes($urlRouterProvider, $stateProvider) {
     $stateProvider
       .state("welcome", {
-        url:         "/",
-        templateUrl: "/js/app/layouts/welcome.html"
-      })
-      .state("signin", {
-        url:          "/signin",
+        url:          "/",
         templateUrl:  "/js/app/auth/signin.html",
         controller:   "SignInController",
         controllerAs: "vm"
+      })
+      .state("articles", {
+        url:          "/articles",
+        templateUrl:  "/js/app/article/articles.html",
+        controller:   "ArticlesController",
+        controllerAs: "vm",
+        authorized: true
       })
       .state("profile", {
         url:          "/profile",

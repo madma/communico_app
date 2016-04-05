@@ -53,7 +53,7 @@ function create(req, res, next) {
   // On sign up, both email and username are submitted, but
   // On log in, user can use either email or username, thus
   // Check if at least one of these fields is included in the request body
-  if ((!req.body.email || !req.body.email_username) || !req.body.password) {
+  if (!(req.body.email || req.body.email_username) || !req.body.password) {
     var message = "Missing required fields: password and email or username";
     return res.status(422).json(message);
   }
@@ -62,6 +62,8 @@ function create(req, res, next) {
   // It is a log in and will have to look for user by looking in both email and username fields
   var email_username = "";
   req.body.email_username ? email_username = req.body.email_username : email_username = req.body.email;
+
+  console.log("email_username is: ", email_username);
 
   User
     .findOne({$or: [{email: email_username}, {username: email_username}]}).exec()

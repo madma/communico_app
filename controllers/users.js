@@ -1,10 +1,5 @@
 var User = require("../models/user");
 
-module.exports = {
-  create: create,
-  update: update,
-  me:     me
-};
 
 function create(req, res, next) {
   if (!req.body.password) {
@@ -72,3 +67,9 @@ function update(req, res, next) {
       next(err);
     });
 }
+
+module.exports = {
+  create: create,
+  update: update,
+  me:     me
+};

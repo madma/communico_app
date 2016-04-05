@@ -12,14 +12,16 @@
 
     // BINDINGS
     vm.signUp = {
-      email:    "pj@ga.co",
-      name:     "Philip Hughes",
+      firstName: "Michael",
+      lastName: "Duran",
+      username: "madma",
+      email:    "michael@m-a-d.work",
       password: "12345",
       passwordConfirmation: "12345"
     };
     vm.submitSignUp = submitSignUp;
     vm.logIn = {
-      email:    "pj@ga.co",
+      email_username:    "madma",
       password: "12345"
     };
     vm.submitLogIn = submitLogIn;
@@ -30,18 +32,19 @@
       userService
         .create(vm.signUp)
         .then(function(res) {
+          $log.debug(res);
           return authService.logIn(vm.signUp);
         })
         .then(
           // on success
           function(decodedToken) {
             $log.debug('Logged in!', decodedToken);
-            $state.go('profile');
+            $state.go('articles');
           },
           // on error
           function(err) {
             if (err.status === 409) vm.conflict = true;
-            $log.debug('Error Claire-r:', err);
+            $log.debug('Error:', err);
           }
         );
     }
@@ -53,7 +56,7 @@
           // on success
           function(decodedToken) {
             $log.debug('Logged in!', decodedToken);
-            $state.go('profile');
+            $state.go('articles');
           },
           // on error
           function(err) {

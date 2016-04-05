@@ -11,9 +11,9 @@ var articlesController = require("../controllers/articles");
 var token = require("../config/token_auth");
 
 // user resource paths:
-router.post('/users',    usersCtrl.create);
-router.get( '/users/me', token.authenticate, usersCtrl.me);
-router.put( '/users/me', token.authenticate, usersCtrl.update);
+router.post('/users',    usersController.create);
+router.get( '/users/me', token.authenticate, usersController.me);
+router.put( '/users/me', token.authenticate, usersController.update);
 
 router.post('/token', token.create);
 router.post('/users/me/token', token.authenticate, token.refresh);

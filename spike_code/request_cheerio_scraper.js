@@ -31,6 +31,28 @@ var cheerio = require("cheerio");
 //   "http://www.nytimes.com/2016/04/01/world/europe/brussels-attacks-airport-security.html"
 //   ];
 
+function ArticleFromLink(uri) {
+  var options = new Options(uri);
+  var article = {};
+  var title,
+      author,
+      description,
+      publisher,
+      url,
+      text,
+      images,
+      thumbnailImg,
+      publishedOn,
+      subjects;
+
+  var promise = rp(options)
+    .then(function($) {
+      // TODO: check if itemtype === "schema.org/NewsArticle"
+      var ps = $("p.story-body-text"); // story-content class also works for nyt
+      ps ? ps.each((i, p) => console.log($(p).text())) : console.log("ps does not exist");
+    });
+
+}
 
 function Options(uri) {
   this.uri = uri;
@@ -49,6 +71,8 @@ function getDescription(opt) {
 
     return promise;
 }
+
+var article = new ArticleFromLink("http://www.nytimes.com/2016/04/06/world/europe/panama-papers-iceland.html");
 
 // uris.map(uri => new Options(uri)).forEach(options => getDescription(options));
 

@@ -119,7 +119,13 @@ function authenticate(req, res, next) {
 
   verifyJwtAndHandleErrors(token, next, function(decoded) {
     req.decoded = decoded;
-    next();
+
+    User
+      .findById(decoded._id).exec()
+      .then(function(user) {
+        req.user = user;
+        next();
+      })
   });
 }
 

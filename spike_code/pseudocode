@@ -1,0 +1,22 @@
+user story: aau i want to submit a link to an article and save it to my articles
+
+client-side
+submit form with rawArticleLink
+X  POST rawArticleLink and user._id to /api/articles
+
+server-side
+articlesUsersController
+X  with scraper helper, generate and return the article canonical link from the raw link
+  articlesController
+X    search the articles collection to see if an article doc with canonical link exists
+      if article exists
+X       update and save the article's addedBy=[users] with the user._id
+X          then trigger update and save the user's articles=[articles] with article._id
+X            then send a response to the client
+      else if the article does not exist
+X        with scraper helper, generate an article object from the canonical link
+X        set the article objects addedBy property to an array containing the user._id
+X          then create the article doc
+X            then trigger update and save the user's articles=[articles] with article._id
+X              then send a response to the client
+

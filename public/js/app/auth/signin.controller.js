@@ -40,6 +40,7 @@
           // on success
           function(decodedToken) {
             $log.debug('Logged in!', decodedToken);
+            $log.debug('Token data: ', authService.currentUser());
             $state.go('articles');
           },
           // on error
@@ -57,6 +58,7 @@
           // on success
           function(decodedToken) {
             $log.debug('Logged in!', decodedToken);
+            $log.debug('Token data: ', authService.currentUser());
             $state.go('articles');
           },
           // on error

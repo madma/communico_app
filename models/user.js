@@ -7,6 +7,7 @@ var userArticleSchema = new mongoose.Schema({
   title:        String,
   description:  String,
   thumbnailImg: String,
+  subjects: [String],
   tags:         [String]
 });
 

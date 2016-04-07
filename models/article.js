@@ -17,7 +17,7 @@ var articleSchema = new mongoose.Schema({
   author: String,
   description: String,
   publisher: String,
-  url: String,
+  url: {type: String, required: true, unique: true},
   text: String,
   images: [String],
   thumbnailImg: String,

@@ -1,11 +1,10 @@
 var express = require("express"),
     router  = new express.Router();
 
-module.exports = router;
-
 // Require controllers
 var usersController = require("../controllers/users");
-var articlesController = require("../controllers/articles");
+// var articlesController = require("../controllers/articles");
+var articlesUsersController = require("../controllers/articlesUsers");
 
 // Require token authentication
 var token = require("../config/token_auth");
@@ -20,5 +19,6 @@ router.post('/users/me/token', token.authenticate, token.refresh);
 
 
 // article resource paths
-router.post("/articles", articlesController.scrape);
+router.post("/articles", token.authenticate, articlesUsersController.scrape);
 
+module.exports = router;

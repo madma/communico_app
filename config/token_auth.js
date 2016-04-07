@@ -77,7 +77,8 @@ function create(req, res, next) {
 
       res.json({
         message: "Successfully generated token",
-        token:   token
+        token:   token,
+        id: user._id
       });
     });
 }

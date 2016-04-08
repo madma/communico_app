@@ -45,9 +45,18 @@ function getCanonicalUrl(url) {
       console.log("Getting canonical url from raw link...");
       canonicalUrl = $(scrapeFieldsSelectors.url[0]).attr(scrapeFieldsSelectors.url[1]);
       console.log(canonicalUrl);
-      return canonicalUrl;
+      return canonicalUrl ? canonicalUrl : url;
     });
   return promise;
+}
+
+function getCanonicalUrls(urlsArray) {
+  var promisesArray = urlsArray.map(url => getCanonicalUrl(url));
+  return Promise.all(promisesArray)
+    .then(function(canonicalUrls) {
+      console.log("canonical urls: ", canonicalUrls);
+      return canonicalUrls;
+    });
 }
 
 function scrapeArticle(url) {
@@ -57,7 +66,7 @@ function scrapeArticle(url) {
     .then(function($) {
       var keys = Object.keys(scrapeFieldsSelectors);
       keys.forEach(key => article[key] = $(scrapeFieldsSelectors[key][0]).attr(scrapeFieldsSelectors[key][1]));
-      article.subjects = article.subjects.toLowerCase().split(",");
+      if (article.subjects) article.subjects.toLowerCase().split(",");
       return $.html();
     })
     .then(function(html) {
@@ -77,6 +86,25 @@ function scrapeArticle(url) {
   return promise;
 }
 
+function scrapeArticles(urlsArray) {
+  var promisesArray = urlsArray.map(url => scrapeArticle(url));
+  return Promise.all(promisesArray)
+    .then(function(articleDataObjsArray) {
+      console.log("articleDataObjsArray: ", articleDataObjsArray);
+      return articleDataObjsArray;
+    });
+}
+
+// function scrapeArticles(urlsArray) {
+//   var articleDataObjsArray = new Array();
+//   return new Promise(function(resolve, reject) {
+//     articleDataObjsArray = urlsArray.map(function(url) {
+//       scrapeArticle(url);
+//     });
+//     resolve(articleDataObjsArray);
+//   });
+// }
+
 function getHostname(url) {
     var h = url.match(/^http:\/\/[^/]+/);
     return h ? h[0] : null;
@@ -84,14 +112,19 @@ function getHostname(url) {
 
 
 module.exports = {
+  id: module.id,
   scrapeArticle: scrapeArticle,
   getCanonicalUrl: getCanonicalUrl,
+  getCanonicalUrls: getCanonicalUrls,
+  scrapeArticles: scrapeArticles,
 };
 
+// var rawLinks = [
+//     "http://nymag.com/thecut/2016/04/black-girls-rock-is-the-celebration-we-deserve.html",
+//     "http://www.businessinsider.com/how-to-buy-class-mens-dress-shoes-2016-4",
+//     "http://remezcla.com/culture/96-year-old-wwii-vet-oldest-usc-grad/",
+//     "http://m.nydailynews.com/new-york/cruz-bronx-school-visit-canceled-students-plan-walkout-article-1.2590946?cid=bitly"
+//   ];
 
-// tests
-/*
-var rawLink = "http://www.nytimes.com/2016/04/07/opinion/blaming-the-white-victim-class.html?action=click&pgtype=Homepage&clickSource=story-heading&module=opinion-c-col-left-region&region=opinion-c-col-left-region&WT.nav=opinion-c-col-left-region&mtrref=www.nytimes.com&gwh=563583E47ADD563A06C17EB2135584FB&gwt=pay&assetType=opinion";
-
-getCanonicalUrl(rawLink);
-*/
+// console.log("testing getCanonicalUrls function");
+// getCanonicalUrls(rawLinks);

@@ -46,8 +46,8 @@ userArticleSchema.methods.addTag = function(newTag) {
 // }
 
 var userSchema = new mongoose.Schema({
-  firstName: {type: String, required: true},
-  lastName:  {type: String, required: true},
+  firstName: {type: String, required: true, unique: false},
+  lastName:  {type: String, required: true, unique: false},
   username:  {type: String, required: true, unique: true},
   email:     {type: String, required: true, unique: true},
   articles:  [userArticleSchema]

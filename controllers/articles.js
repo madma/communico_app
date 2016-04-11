@@ -1,5 +1,5 @@
 // Require resource's model(s).
-var Article = require("../models/Article");
+var Article = require("../models/article");
 var scraper = require("./helpers/articles.scraper.js");
 
 
@@ -35,7 +35,7 @@ var index = function(req, res, next) {
     if (err) {
       res.json({message: err});
     } else {
-      res.render('Articles/index', {Articles: Articles});
+      res.json(Articles);
     }
   });
 };

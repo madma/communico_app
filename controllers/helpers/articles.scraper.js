@@ -78,7 +78,7 @@ function scrapeArticle(url) {
           var d = doc.content.toString();
           var $ = cheerio.load(d);
           $('p').each((i, e) => article.text += `<p>${$(e).html()}</p>`);
-          console.log("  scraper scraped:", article.title);
+          console.log("  scraper scraped:", article.text);
           resolve(article);
         });
       });
@@ -118,6 +118,16 @@ module.exports = {
   getCanonicalUrls: getCanonicalUrls,
   scrapeArticles: scrapeArticles,
 };
+
+
+// getCanonicalUrl("http://www.nytimes.com/2016/04/10/magazine/the-new-europeans.html?rref=collection%2Fsectioncollection%2Fmagazine&action=click&contentCollection=magazine&region=rank&module=package&version=highlights&contentPlacement=2&pgtype=sectionfront");
+// scrapeArticle("http://www.nytimes.com/2016/04/10/magazine/the-new-europeans.html?rref=collection%2Fsectioncollection%2Fmagazine&action=click&contentCollection=magazine&region=rank&module=package&version=highlights&contentPlacement=2&pgtype=sectionfront");
+
+// console.log("************************");
+// console.log("************************");
+
+// getCanonicalUrl("http://www.newyorker.com/magazine/2016/04/18/considering-female-rule");
+// scrapeArticle("http://www.newyorker.com/magazine/2016/04/18/considering-female-rule");
 
 // var rawLinks = [
 //     "http://nymag.com/thecut/2016/04/black-girls-rock-is-the-celebration-we-deserve.html",

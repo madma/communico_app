@@ -11,13 +11,13 @@
     </form>
   </div>
 
-  <div class="flex_container" id="articles_container">
-    <div ng-repeat="article in vm.articles" class="flex_item" id="article_box">
-      <div class="article_card">
+  <div masonry class="flex_container" id="articles_container">
+    <div ng-repeat="article in vm.articles" class="flex_item masonry-brick" id="article_box">
+      <div ng-click="vm.open(article)" class="article_card">
         <div class="article_item" id="title"><a href="{{article.url}}">{{article.title}}</a></div>
         <div class="article_item" id="image"><img src="{{article.thumbnailImg}}" alt=""></div>
         <div class="article_item" id="description"><p>{{article.description}}.</p></div>
-        <button type="button" class="btn btn-default" ng-click="vm.open(article)">{{article.title}}</button>
+        <!-- <button type="button" class="btn btn-default" ng-click="vm.open(article)">...</button> -->
     </div>
     </div>
   </div>

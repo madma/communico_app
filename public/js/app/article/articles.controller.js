@@ -45,10 +45,13 @@
       })
       .then(function(res) {
         $log.debug("THE RESPONSE IS THIS: ", res);
-      }, function(err) {
+      })
+      .then(function() {
+        getArticles();
+      })
+      .catch(function(err) {
         $log.debug('Error:', err);
       });
-      getArticles();
     }
 
     vm.open = function (article) {

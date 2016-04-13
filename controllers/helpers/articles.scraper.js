@@ -120,8 +120,12 @@ module.exports = {
 };
 
 
-// getCanonicalUrl("http://www.nytimes.com/2016/04/10/magazine/the-new-europeans.html?rref=collection%2Fsectioncollection%2Fmagazine&action=click&contentCollection=magazine&region=rank&module=package&version=highlights&contentPlacement=2&pgtype=sectionfront");
-// scrapeArticle("http://www.nytimes.com/2016/04/10/magazine/the-new-europeans.html?rref=collection%2Fsectioncollection%2Fmagazine&action=click&contentCollection=magazine&region=rank&module=package&version=highlights&contentPlacement=2&pgtype=sectionfront");
+// getCanonicalUrl("http://blog.sandeepdinesh.com/2015/07/running-mean-web-application-in-docker.html");
+// scrapeArticle("http://blog.sandeepdinesh.com/2015/07/running-mean-web-application-in-docker.html");
+
+// use phantomjs, a headless browser, to load content then scrape; link below is a good test case
+// getCanonicalUrl("http://thelab.bleacherreport.com/more-than-a-sneaker/");
+// scrapeArticle("http://thelab.bleacherreport.com/more-than-a-sneaker/");
 
 // console.log("************************");
 // console.log("************************");

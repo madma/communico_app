@@ -6,7 +6,7 @@ var highlightSchema = new mongoose.Schema({
   startChar: Number,
   endChar: Number,
   createdAt: Date,
-  text: String,
+  text: String, // may not be necessary to store
   addedBy: {type: mongoose.Schema.Types.ObjectId, ref: "User"}
 
 

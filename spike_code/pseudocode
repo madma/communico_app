@@ -57,6 +57,13 @@ on hightlight do:
     render the highlight:
       apply a class to the selected text
 
+refactor anonymous modal controller into named controller in order to more easily store article annotation properties (highlights, comments, etc.)
+
+return the containing element of the selection as a string
+  selection.getRangeAt(0).commonAncestorContainer.innerHTML
+  http://stackoverflow.com/questions/5222814/window-getselection-return-html
+    google: "window getselection including html"
+
 
 
 

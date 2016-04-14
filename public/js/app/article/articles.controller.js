@@ -5,9 +5,9 @@
     .module("app")
     .controller("ArticlesController", ArticlesController);
 
-  ArticlesController.$inject = ["$log", "authService", "userService", "$state", "$http", "$uibModal", "$scope"];
+  ArticlesController.$inject = ["$log", "authService", "userService", "articlesModalService", "$state", "$http", "$uibModal", "$scope"];
 
-  function ArticlesController($log, authService, userService, $state, $http, $uibModal, $scope) {
+  function ArticlesController($log, authService, userService, articlesModalService, $state, $http, $uibModal, $scope) {
     var vm = this;
 
     // BINDINGS
@@ -21,6 +21,8 @@
     vm.show = false;
 
     vm.animationsEnabled = true;
+
+    // vm.logSelectedText = articlesModalService.logSelectedText;
 
     // FUNCTIONS
     function getArticles() {
@@ -62,6 +64,7 @@
         resolve: {article: article},
         controller: function(article, $scope) {
           $scope.article = article;
+          $scope.logSelectedText = articlesModalService.logSelectedText;
         }
       });
     };

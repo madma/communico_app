@@ -2,7 +2,7 @@
   <h2>Articles Container</h2>
 
   <div>
-    <form ng-submit="vm.submitLink(vm.userLink); vm.getArticles();">
+    <form ng-submit="vm.submitLink(vm.userLink)">
       <div class="form-group">
         <label for="input-link">Article Link</label>
         <input ng-model="vm.userLink" type="link" class="form-control" id="input-link" placeholder="http://www.nytimes.com/2016/03/13/opinion/sunday/the-superior-social-skills-of-bilinguals.html">
@@ -27,7 +27,7 @@
             <h3 class="modal-title">{{article.title}}</h3>
             <div class="article_item" id="image"><img src="{{article.thumbnailImg}}" alt=""></div>
           </div>
-          <div class="modal-body" ng-bind-html="article.text">
+          <div class="modal-body" ng-bind-html="article.text" ng-mouseup="logSelectedText()">
           </div>
           <div class="modal-footer">
               <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>

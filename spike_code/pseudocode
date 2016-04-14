@@ -20,3 +20,45 @@ X          then create the article doc
 X            then trigger update and save the user's articles=[articles] with article._id
 X              then send a response to the client
 
+
+user story: aau i want to highlight and save specific passages in an article
+
+1. test highlight schema
+  add a highlight to an article's text
+    user highlights some text
+      get start char
+      get end char
+      article.text.substring(startChar, endChar);
+      highlight = {};
+      highlight.startChar = startChar;
+      highlight.endChar = endChar;
+      highlight.addedBy = user._id;
+      article.highlights.push(highlight);
+      article.save();
+      user.articles[thisOne].highlights.push(highlight);
+      user.save();
+  return the highlight
+
+in angular, listen for a highlight
+on hightlight do:
+  popup a tooltip
+  confirm highlight save
+  on confirm:
+    get start char
+    get end char
+    article.text.substring(startChar, endChar);
+    highlight = {};
+    highlight.startChar = startChar;
+    highlight.endChar = endChar;
+    highlight.addedBy = user._id;
+    user.articles[thisOne].highlights.push(highlight);
+    user.save();
+      trigger update associated Article resource with highlight
+    render the highlight:
+      apply a class to the selected text
+
+
+
+
+
+

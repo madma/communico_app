@@ -61,10 +61,23 @@ function create(req, res, next) {
     });
 }
 
+function index(req, res, next) {
+  Article.find({"addedBy": req.user._id}).exec()
+  .then(function(articles) {
+    console.log("FOUND THE FOLLOWING ARTICLES FOR THE USER: ", req.user.email);
+    articles.forEach(article => console.log(article.title));
+    res.status(200).json(articles);
+  })
+  .catch(function(err) {
+    console.log(err);
+    next(err);
+  });
+}
+
 
 module.exports = {
   scrape: create,
-  // index: index,
+  index: index,
   // show:  show,
   // update: update,
 };

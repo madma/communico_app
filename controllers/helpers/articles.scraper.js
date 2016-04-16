@@ -21,7 +21,7 @@ var scrapeFieldsSelectors = {
   description: ["[property='og:description']", "content"],
   url: ["[rel='canonical']", "href"],
   thumbnailImg: ["[property='og:image']", "content"],
-  subjects: ["[name='keywords']", "content"],
+  subjects: ["[name*='keywords']", "content"],
 };
 
 // Non-standard fields for node-read
@@ -66,7 +66,7 @@ function scrapeArticle(url) {
     .then(function($) {
       var keys = Object.keys(scrapeFieldsSelectors);
       keys.forEach(key => article[key] = $(scrapeFieldsSelectors[key][0]).attr(scrapeFieldsSelectors[key][1]));
-      if (article.subjects) article.subjects.toLowerCase().split(",");
+      if (article.subjects) article.subjects = article.subjects.toLowerCase().split(",");
       return $.html();
     })
     .then(function(html) {
@@ -78,7 +78,7 @@ function scrapeArticle(url) {
           var d = doc.content.toString();
           var $ = cheerio.load(d);
           $('p').each((i, e) => article.text += `<p>${$(e).html()}</p>`);
-          console.log("  scraper scraped:", article.text);
+          console.log("SCRAPED ARTICLE DATA:", "\n", article);
           resolve(article);
         });
       });
@@ -131,7 +131,7 @@ module.exports = {
 // console.log("************************");
 
 // getCanonicalUrl("http://www.newyorker.com/magazine/2016/04/18/considering-female-rule");
-// scrapeArticle("http://www.newyorker.com/magazine/2016/04/18/considering-female-rule");
+// scrapeArticle("http://www.nytimes.com/2016/04/16/world/americas/files-suggest-honduras-police-leaders-ordered-killing-of-antidrug-officials.html?hp&action=click&pgtype=Homepage&clickSource=story-heading&module=second-column-region&region=top-news&WT.nav=top-news&_r=0");
 
 // var rawLinks = [
 //     "http://nymag.com/thecut/2016/04/black-girls-rock-is-the-celebration-we-deserve.html",

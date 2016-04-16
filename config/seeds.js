@@ -1,8 +1,10 @@
 var mongoose = require('./database');
+var _ = require('lodash');
 
 var User    = require('./../models/user');
 var Article = require('./../models/article');
 var scraper = require('./../controllers/helpers/articles.scraper.js');
+
 
 // console.log(scraper);
 
@@ -10,12 +12,6 @@ var scraper = require('./../controllers/helpers/articles.scraper.js');
 
 var users;
 var articles;
-var rawLinks = [
-    "http://nymag.com/thecut/2016/04/black-girls-rock-is-the-celebration-we-deserve.html",
-    "http://www.businessinsider.com/how-to-buy-class-mens-dress-shoes-2016-4",
-    "http://remezcla.com/culture/96-year-old-wwii-vet-oldest-usc-grad/",
-    "http://m.nydailynews.com/new-york/cruz-bronx-school-visit-canceled-students-plan-walkout-article-1.2590946?cid=bitly"
-  ];
 
 /*
  * Seed the database.
@@ -33,7 +29,7 @@ User.remove({})
   })
   .then(function() {
     console.log("Removing articles...");
-    Article.remove({});
+    return Article.remove({});
   })
   .then(function() {
     var articleUrls;
@@ -49,8 +45,8 @@ User.remove({})
         return scraper
         .scrapeArticles(articleUrls)
           .then(function(articleDataObjsArray) {
-            console.log("SCRAPED DATA:", articleDataObjsArray);
-            // articleData.addedBy = [req.user._id];
+            // console.log("SCRAPED DATA:", articleDataObjsArray);
+            articleDataObjsArray.forEach(article => {article.addedBy = _.sampleSize(users, 2); /*console.log("SCRAPED ARTICLE: ", "\n", article);*/});
             return Article.create(articleDataObjsArray);
           })
           .catch(function(err) {
@@ -60,10 +56,22 @@ User.remove({})
   })
   .then(function(createdArticles) {
     articles = createdArticles;
-    console.log("LOGGING THE CREATED USERS......");
-    users.forEach((user, i) => console.log("user " + i + ": " + "\n" + user));
-    console.log("LOGGING THE CREATED ARTICLES......");
-    articles.forEach((article, i) => console.log("article " + i + ": " + "\n" + article));
+    createdArticles.forEach(article => {
+      Promise.all(article.addedBy.forEach(user => {
+        User.findByIdAndUpdate(user._id, {$push: {articles: article}}, {new: true}).exec();
+      }));
+    });
+  })
+  .then(function() {
+    return User.find({});
+  })
+  .then(function(updatedUsers) {
+    // articles = createdArticles;
+    users = updatedUsers;
+    console.log("LOGGING THE UPDATED USERS......");
+    updatedUsers.forEach((user, i) => console.log("user " + i + ": " + "\n" + user));
+    // console.log("LOGGING THE CREATED ARTICLES......");
+    // articles.forEach((article, i) => console.log("article " + i + ": " + "\n" + article));
     closeMongoConnection();
   })
   .catch(function(err) {
@@ -83,10 +91,29 @@ function closeMongoConnection() {
 
 function definedArticleUrls() {
   return [
-    "http://www.nytimes.com/2016/04/08/fashion/mens-style/luka-sabbat-fashion-influencer.html?hp&action=click&pgtype=Homepage&clickSource=story-heading&module=photo-spot-region&region=top-news&WT.nav=top-news&mtrref=www.nytimes.com&gwh=442D2D8A8A6F408E18CFA65E568D2EB3&gwt=pay",
-    "https://www.washingtonpost.com/news/worldviews/wp/2016/04/08/how-global-tax-evasion-keeps-poor-countries-poor/?hpid=hp_hp-top-table-main_taxevasion-wv-645am%3Ahomepage%2Fstory",
+    "http://www.cnn.com/2016/03/30/tech/nasa-super-earth-temperatures/index.html",
     "http://www.latimes.com/politics/la-pol-ca-marijuana-regulator-20160408-story.html",
-    "http://www.nytimes.com/2016/04/06/world/europe/panama-papers-iceland.html?hp&action=click&pgtype=Homepage&clickSource=story-heading&module=first-column-region&region=top-news&WT.nav=top-news&_r=0"
+    "http://www.latimes.com/politics/la-pol-sac-paid-family-leave-california-20160411-story.html",
+    "http://www.latimes.com/sports/lakers/la-sp-kobe-last-game-pictures-20160413-photogallery.html"/*,
+    "http://www.latimes.com/sports/lakers/la-sp-lakers-what-does-kobe-bryant-mean-to-you-responses-20160410-story.html",
+    "http://www.newyorker.com/cartoons/bob-mankoff/the-world-of-william-hamilton",
+    "http://www.newyorker.com/culture/cultural-comment/beverly-cleary-age-100",
+    "http://www.newyorker.com/magazine/2012/08/06/fussbudget",
+    "http://www.newyorker.com/magazine/2016/04/11/gay-talese-the-voyeurs-motel",
+    "http://www.newyorker.com/magazine/2016/04/18/a-radical-attempt-to-save-the-reefs-and-forests",
+    "http://www.newyorker.com/magazine/2016/04/18/considering-female-rule",
+    "http://www.newyorker.com/magazine/2016/04/18/maggie-nelsons-many-selves",
+    "http://www.newyorker.com/news/amy-davidson/ted-cruz-meets-new-york-values",
+    "http://www.newyorker.com/news/daily-comment/bill-clinton-eternal-campaigner",
+    "http://www.newyorker.com/news/news-desk/no-answers-in-the-murder-of-berta-caceres",
+    "http://www.nytimes.com/2016/03/13/opinion/sunday/the-superior-social-skills-of-bilinguals.html",
+    "http://www.nytimes.com/2016/04/06/world/europe/panama-papers-iceland.html",
+    "http://www.nytimes.com/2016/04/08/fashion/mens-style/luka-sabbat-fashion-influencer.html",
+    "http://www.nytimes.com/2016/04/09/world/europe/pope-francis-amoris-laetitia.html",
+    "http://www.nytimes.com/2016/04/12/opinion/international/whats-missing-from-the-syria-peace-talks.html",
+    "http://www.nytimes.com/2016/04/12/science/a-new-zealand-penguin-hard-to-spot-is-harder-to-preserve.html",
+    "http://www.nytimes.com/politics/first-draft/2016/04/07/bernie-sanders-and-hillary-clinton-spar-over-presidential-qualifications/",
+    "https://www.washingtonpost.com/news/worldviews/wp/2016/04/08/how-global-tax-evasion-keeps-poor-countries-poor/"*/
   ];
 }
 

@@ -8,7 +8,8 @@ var userArticleSchema = new mongoose.Schema({
   description:  String,
   thumbnailImg: String,
   subjects: [String],
-  tags:         [String]
+  tags:         [String],
+  text: String
 });
 
 userArticleSchema.methods.addTag = function(newTag) {

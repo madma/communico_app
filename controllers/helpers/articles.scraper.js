@@ -78,7 +78,7 @@ function scrapeArticle(url) {
           var d = doc.content.toString();
           var $ = cheerio.load(d);
           $('p').each((i, e) => article.text += `<p>${$(e).html()}</p>`);
-          console.log("SCRAPED ARTICLE DATA:", "\n", article);
+          // console.log("SCRAPED ARTICLE DATA:", "\n", article);
           resolve(article);
         });
       });
@@ -90,7 +90,7 @@ function scrapeArticles(urlsArray) {
   var promisesArray = urlsArray.map(url => scrapeArticle(url));
   return Promise.all(promisesArray)
     .then(function(articleDataObjsArray) {
-      console.log("articleDataObjsArray: ", articleDataObjsArray);
+      // console.log("articleDataObjsArray: ", articleDataObjsArray);
       return articleDataObjsArray;
     });
 }

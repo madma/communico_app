@@ -19,7 +19,12 @@ router.post('/users/me/token', token.authenticate, token.refresh);
 
 
 // article resource paths
-router.post("/articles", token.authenticate, articlesUsersController.scrape);
 router.get("/articles", token.authenticate, articlesController.index);
+
+// articlesUsers resource paths
+router.post("/articles", token.authenticate, articlesUsersController.scrape);
+router.get("/users/me/articles", token.authenticate, articlesUsersController.index);
+
+
 
 module.exports = router;

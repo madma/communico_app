@@ -28,7 +28,7 @@
     function getArticles() {
       $http({
         method: "GET",
-        url: "/api/articles",
+        url: "/api/users/me/articles",
       })
       .then(function(res) {
         $log.debug("THE GET ARTICLES RESPONSE IS THIS: ", res);

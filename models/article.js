@@ -24,7 +24,7 @@ var articleSchema = new mongoose.Schema({
   publishedOn: Date,
   subjects: [String],
   highlights: [highlightSchema],
-  addedBy: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}]
+  addedBy: [{type: mongoose.Schema.Types.ObjectId, ref: "User", unique: true}]
 });
 
 var Article = mongoose.model('Article', articleSchema);

@@ -25,7 +25,15 @@
 
   <div masonry class="flex_container" id="articles_container">
     <div ng-repeat="article in vm.articles" class="flex_item masonry-brick" id="article_box">
-      <div ng-click="vm.open(article)" class="article_card">
+      <div class="article_card">
+        <header class="article_item">
+          <span>Added by {{article.addedBy.length}} {{article.addedBy.length > 1 ? "users" : "user"}}</span>
+          <span ng-show="!vm.isInMyArticles(article)">
+            <button ng-click="vm.addArticle(article)" class="btn btn-default">
+              <span class="glyphicon glyphicon-plus"></span>
+            </button>
+          </span>
+        </header>
         <div class="article_item" id="title"><a href="{{article.url}}">{{article.title}}</a></div>
         <div class="article_item" id="image"><img src="{{article.thumbnailImg}}" alt=""></div>
         <div class="article_item" id="description"><p>{{article.description}}</p></div>

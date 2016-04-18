@@ -16,18 +16,20 @@
     vm.articles = [];
     vm.myArticles = true;
     vm.allArticles = !vm.myArticles;
+    vm.show = false;
+    vm.animationsEnabled = true;
 
     vm.getArticles = getArticles;
     vm.getMyArticles = getMyArticles;
-    vm.getMyArticles();
+    vm.isInMyArticles = isInMyArticles;
+    vm.addArticle = addArticle;
 
-    vm.show = false;
-
-    vm.animationsEnabled = true;
 
     // vm.logSelectedText = articlesModalService.logSelectedText;
 
     // FUNCTIONS
+    vm.getMyArticles();
+
     function getArticles() {
       $http({
         method: "GET",
@@ -35,6 +37,27 @@
       })
       .then(function(res) {
         $log.debug("THE GET ARTICLES RESPONSE IS THIS: ", res);
+        vm.articles = res.data;
+      })
+      .catch(function(err) {
+        $log.debug(err);
+      });
+    }
+
+    function isInMyArticles(article) {
+      if (article.addedBy.indexOf(authService.currentUser()._id) !== -1) return true;
+      return false;
+    }
+
+    function addArticle(article) {
+      $http({
+        method: "PUT",
+        url: "/api/users/me/articles",
+        data: {articleId: article._id, userId: authService.currentUser()._id}
+      })
+      .then(function(res) {
+        $log.debug("THE PUT ARTICLES RESPONSE IS THIS: ", res);
+        vm.myArticles = true;
         vm.articles = res.data;
       })
       .catch(function(err) {

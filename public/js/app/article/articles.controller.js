@@ -14,9 +14,12 @@
     vm.userLink = "";
     vm.submitLink = submitLink;
     vm.articles = [];
+    vm.myArticles = true;
+    vm.allArticles = !vm.myArticles;
 
     vm.getArticles = getArticles;
-    vm.getArticles();
+    vm.getMyArticles = getMyArticles;
+    vm.getMyArticles();
 
     vm.show = false;
 
@@ -26,6 +29,20 @@
 
     // FUNCTIONS
     function getArticles() {
+      $http({
+        method: "GET",
+        url: "/api/articles",
+      })
+      .then(function(res) {
+        $log.debug("THE GET ARTICLES RESPONSE IS THIS: ", res);
+        vm.articles = res.data;
+      })
+      .catch(function(err) {
+        $log.debug(err);
+      });
+    }
+
+    function getMyArticles() {
       $http({
         method: "GET",
         url: "/api/users/me/articles",
@@ -49,7 +66,7 @@
         $log.debug("THE RESPONSE IS THIS: ", res);
       })
       .then(function() {
-        getArticles();
+        getMyArticles();
       })
       .catch(function(err) {
         $log.debug('Error:', err);

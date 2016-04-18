@@ -81,3 +81,8 @@ span.vertical-divider {
 .modal-body {
   text-align: left;
 }
+
+
+form#submit-link {
+  margin: 20px 0;
+}

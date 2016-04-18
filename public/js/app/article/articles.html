@@ -1,13 +1,25 @@
-<div id="articles-container">
+<div id="articles-container" ng-cloak>
   <h2>Articles Container</h2>
+  <ul class="nav nav-tabs">
+    <li ng-click="vm.myArticles = true; vm.getMyArticles()" ng-class="vm.myArticles ? 'active' : ''" role="presentation">
+      <a href="#/articles">My Articles</a>
+    </li>
+    <li ng-click="vm.myArticles = !vm.myArticles; vm.getArticles()" ng-class="!vm.myArticles ? 'active' : ''" role="presentation">
+      <a href="#/articles">All Articles</a>
+    </li>
+      <!-- <button class="btn btn-default">
+        <span class="glyphicon glyphicon-plus"></span>Add
+      </button> -->
+  </ul>
 
   <div>
-    <form ng-submit="vm.submitLink(vm.userLink)">
-      <div class="form-group">
-        <label for="input-link">Article Link</label>
-        <input ng-model="vm.userLink" type="link" class="form-control" id="input-link" placeholder="http://www.nytimes.com/2016/03/13/opinion/sunday/the-superior-social-skills-of-bilinguals.html">
+    <form ng-submit="vm.submitLink(vm.userLink)" id="submit-link">
+      <div class="input-group">
+        <input ng-model="vm.userLink" type="link" class="form-control" id="input-link" placeholder="Add an article by submitting a link...">
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+        </span>
       </div>
-      <button type="submit" class="btn btn-default">Submit</button>
     </form>
   </div>
 
@@ -16,7 +28,10 @@
       <div ng-click="vm.open(article)" class="article_card">
         <div class="article_item" id="title"><a href="{{article.url}}">{{article.title}}</a></div>
         <div class="article_item" id="image"><img src="{{article.thumbnailImg}}" alt=""></div>
-        <div class="article_item" id="description"><p>{{article.description}}.</p></div>
+        <div class="article_item" id="description"><p>{{article.description}}</p></div>
+        <span ng-repeat="subject in article.subjects" class="article_item" id="tags">
+          <span class="label label-primary">{{subject}}</span>
+        </span>
         <!-- <button type="button" class="btn btn-default" ng-click="vm.open(article)">...</button> -->
     </div>
     </div>
@@ -30,8 +45,7 @@
           <div class="modal-body" ng-bind-html="article.text" ng-mouseup="logSelectedText()">
           </div>
           <div class="modal-footer">
-              <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-              <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+              <!-- <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button> -->
           </div>
       </script>
 

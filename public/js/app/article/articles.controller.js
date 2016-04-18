@@ -44,6 +44,7 @@
       });
     }
 
+
     function isInMyArticles(article) {
       if (article.addedBy.indexOf(authService.currentUser()._id) !== -1) return true;
       return false;

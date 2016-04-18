@@ -27,7 +27,7 @@
     <div ng-repeat="article in vm.articles" class="flex_item masonry-brick" id="article_box">
       <div class="article_card">
         <header class="article_item">
-          <span>Added by {{article.addedBy.length}} {{article.addedBy.length > 1 ? "users" : "user"}}</span>
+          <span>Added by {{vm.isInMyArticles(article) ? "you and " + (article.addedBy.length - 1).toString() + " other " + (article.addedBy.length > 2 || article.addedBy.length == 1 ? "users" : "user") : article.addedBy.length.toString() + (article.addedBy.length > 1 ? " users" : "user")}}</span>
           <span ng-show="!vm.isInMyArticles(article)">
             <button ng-click="vm.addArticle(article)" class="btn btn-default">
               <span class="glyphicon glyphicon-plus"></span>
@@ -37,10 +37,16 @@
         <div class="article_item" id="title"><a href="{{article.url}}">{{article.title}}</a></div>
         <div class="article_item" id="image"><img src="{{article.thumbnailImg}}" alt=""></div>
         <div class="article_item" id="description"><p>{{article.description}}</p></div>
-        <span ng-repeat="subject in article.subjects" class="article_item" id="tags">
-          <span class="label label-primary">{{subject}}</span>
-        </span>
-        <!-- <button type="button" class="btn btn-default" ng-click="vm.open(article)">...</button> -->
+        <div class="article_item" id="subjects">
+          <span ng-repeat="subject in article.subjects" class="article_item" id="tags">
+            <span class="label label-primary">{{subject}}</span>
+          </span>
+        </div>
+        <div class="reader" id="reader-btn-group">
+          <button type="button" class="btn btn-default" ng-click="vm.open(article)">
+            <span class="glyphicon glyphicon-resize-full"></span>
+          </button>
+        </div>
     </div>
     </div>
   </div>

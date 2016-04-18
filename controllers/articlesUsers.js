@@ -62,16 +62,31 @@ function create(req, res, next) {
 }
 
 function index(req, res, next) {
-  Article.find({"addedBy": req.user._id}).exec()
-  .then(function(articles) {
-    console.log("FOUND THE FOLLOWING ARTICLES FOR THE USER: ", req.user.email);
-    articles.forEach(article => console.log(article.title));
-    res.status(200).json(articles);
-  })
-  .catch(function(err) {
-    console.log(err);
-    next(err);
-  });
+  Article
+    .find({"addedBy": req.user._id}).exec()
+    .then(function(articles) {
+      console.log("FOUND THE FOLLOWING ARTICLES FOR THE USER: ", req.user.email);
+      articles.forEach(article => console.log(article.title));
+      res.status(200).json(articles);
+    })
+    .catch(function(err) {
+      console.log(err);
+      next(err);
+    });
+}
+
+function update(req, res, next) {
+  console.log("PUT request received with this data: ", "\n", req.body, req.user._id);
+  Article.findByIdAndUpdate(req.body.articleId, {$push: {addedBy: req.user._id}}, {new: true}).exec()
+    .then(function(article) {
+      console.log("UPDATED ARTICLE is: ", "\n", article);
+      return User.findByIdAndUpdate(req.user._id, {$push: {articles: article}}, {new: true}).exec();
+    })
+    .then(function(user) {
+      console.log("UPDATED USER is: ", "\n", user);
+      console.log("UPDATED THE ARTICLE AND USER");
+      index(req, res, next);
+    });
 }
 
 
@@ -79,5 +94,5 @@ module.exports = {
   scrape: create,
   index: index,
   // show:  show,
-  // update: update,
+  update: update,
 };

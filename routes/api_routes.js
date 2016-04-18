@@ -24,6 +24,7 @@ router.get("/articles", token.authenticate, articlesController.index);
 // articlesUsers resource paths
 router.post("/articles", token.authenticate, articlesUsersController.scrape);
 router.get("/users/me/articles", token.authenticate, articlesUsersController.index);
+router.put("/users/me/articles", token.authenticate, articlesUsersController.update);
 
 
 

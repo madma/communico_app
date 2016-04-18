@@ -50,6 +50,7 @@ span.vertical-divider {
   flex-wrap: wrap;
   align-items: stretch;
   align-content: flex-start;
+  margin: 0 5px;
 }
 
 .flex_item {
@@ -85,4 +86,8 @@ span.vertical-divider {
 
 form#submit-link {
   margin: 20px 0;
+}
+
+div#articles-nav {
+  margin: 20px 15px;
 }

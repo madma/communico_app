@@ -1,5 +1,6 @@
 <div id="articles-container" ng-cloak>
-  <h2>Articles Container</h2>
+  <!-- <h2>Articles Container</h2> -->
+<div id="articles-nav">
   <ul class="nav nav-tabs">
     <li ng-click="vm.myArticles = true; vm.getMyArticles()" ng-class="vm.myArticles ? 'active' : ''" role="presentation">
       <a href="#/articles">My Articles</a>
@@ -15,13 +16,15 @@
   <div>
     <form ng-submit="vm.submitLink(vm.userLink)" id="submit-link">
       <div class="input-group">
-        <input ng-model="vm.userLink" type="link" class="form-control" id="input-link" placeholder="Add an article by submitting a link...">
+      <span class="input-group-addon"><strong>What are you reading?</strong></span>
+        <input ng-model="vm.userLink" type="link" class="form-control" id="input-link" placeholder="Add an article to your collection by submitting a link.">
         <span class="input-group-btn">
           <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
         </span>
       </div>
     </form>
   </div>
+</div>
 
   <div masonry class="flex_container" id="articles_container">
     <div ng-repeat="article in vm.articles" class="flex_item masonry-brick" id="article_box">
@@ -34,7 +37,8 @@
             </button>
           </span>
         </header>
-        <div class="article_item" id="title"><a href="{{article.url}}">{{article.title}}</a></div>
+        <div class="article_item" id="title">{{article.title}}</div>
+        <div class="article_item" id="publisher">Published by <a href="{{article.url}}">{{article.publisher}}</a></div>
         <div class="article_item" id="image"><img src="{{article.thumbnailImg}}" alt=""></div>
         <div class="article_item" id="description"><p>{{article.description}}</p></div>
         <div class="article_item" id="subjects">

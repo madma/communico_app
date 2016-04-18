@@ -45,6 +45,9 @@
           <div class="modal-body" ng-bind-html="article.text" ng-mouseup="logSelectedText()">
           </div>
           <div class="modal-footer">
+            <span ng-repeat="subject in article.subjects" class="article_item" id="tags">
+              <span class="label label-primary">{{subject}}</span>
+            </span>
               <!-- <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button> -->
           </div>
       </script>

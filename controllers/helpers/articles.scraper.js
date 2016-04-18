@@ -66,7 +66,7 @@ function scrapeArticle(url) {
     .then(function($) {
       var keys = Object.keys(scrapeFieldsSelectors);
       keys.forEach(key => article[key] = $(scrapeFieldsSelectors[key][0]).attr(scrapeFieldsSelectors[key][1]));
-      if (article.subjects) article.subjects = article.subjects.toLowerCase().split(",");
+      (article.subjects) ? article.subjects = article.subjects.toLowerCase().split(",") : article.subjects = [""];
       return $.html();
     })
     .then(function(html) {

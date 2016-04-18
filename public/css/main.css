@@ -83,11 +83,10 @@ span.vertical-divider {
   text-align: left;
 }
 
-
-form#submit-link {
-  margin: 20px 0;
-}
-
 div#articles-nav {
   margin: 20px 15px;
+}
+
+div.nav-input .input-group {
+  margin: 20px 0;
 }

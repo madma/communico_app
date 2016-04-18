@@ -10,7 +10,7 @@
   function tokenService($log, $window) {
     $log.debug("tokenService loaded!");
 
-    const TOKEN_KEY = 'auth-token';
+    var TOKEN_KEY = 'auth-token';
     var service = {
       store:    store,
       retrieve: retrieve,

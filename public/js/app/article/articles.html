@@ -16,7 +16,7 @@
 
   <div class="row">
     <div class="col-sm-8 nav-input">
-      <form ng-submit="vm.submitLink(vm.userLink)" id="submit-link">
+      <form ng-submit="vm.submitLink(vm.userLink); vm.userLink = '' " id="submit-link">
         <div class="input-group">
           <span class="input-group-addon"><strong>What are you reading?</strong></span>
           <input ng-model="vm.userLink" type="text" class="form-control" id="input-link" placeholder="Add an article by submitting a link.">

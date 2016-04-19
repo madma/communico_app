@@ -73,7 +73,8 @@
 
       <script type="text/ng-template" id="myModalContent.html">
           <div class="modal-header">
-            <h3 class="modal-title">{{article.title}}</h3>
+            <h3 class="modal-title article_item" id="title">{{article.title}}</h3>
+            <div class="article_item" id="publisher">Published by&nbsp;&nbsp;<a href="{{article.url}}" target="_blank">{{article.publisher}}</a></div>
             <div class="article_item" id="image"><img src="{{article.thumbnailImg}}" alt=""></div>
           </div>
           <div class="modal-body" ng-bind-html="article.text" ng-mouseup="logSelectedText()">

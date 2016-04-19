@@ -147,6 +147,11 @@ div.reader button {
   text-align: left;
 }
 
+[class^="modal"] {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 div#articles-nav {
   margin: 20px 15px;
 }

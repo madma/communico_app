@@ -46,7 +46,10 @@
 
 
     function isInMyArticles(article) {
-      authService.currentUser() && (article.addedBy.indexOf(authService.currentUser()._id) !== -1) ? true : false;
+      if ((authService.currentUser()._id !== null) && (article.addedBy.indexOf(authService.currentUser()._id) !== -1)) {
+        return true;
+      }
+      return false;
     }
 
     function addArticle(article) {

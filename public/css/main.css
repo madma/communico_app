@@ -6,12 +6,15 @@ body {
 }
 
 body {
-  font-size: 14px;
+  font-size: 15px;
   padding: 50px;
   text-align: center;
+  background-color: #E4E4E4;
 }
 
-a { color: #00B7FF; }
+a { color: inherit; }
+
+a:hover { color: inherit; }
 
 div#sign-up-or-log-in {
   width: 100%;
@@ -28,8 +31,32 @@ form.log-in {
   margin-top: 50px;
 }
 
-form > h2 {
-  margin-bottom: 50px;
+.nav-tabs {
+  border-bottom: 1px solid #353535;
+}
+
+.nav-tabs > li > a:hover {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background-color: #919191;
+}
+
+.nav-tabs > li > a {
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  background-color: #C2C2C2;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  background-color: inherit;
+  border: 1px solid rgba(0, 0, 0, 0.75);
+  border-bottom-color: #E4E4E4;
+}
+
+form#submit-link button {
+  background-color: #EAEAEA;
+}
+
+span > strong {
+  background-color: inherit;
 }
 
 span.vertical-divider {
@@ -56,16 +83,20 @@ span.vertical-divider {
 .flex_item {
   margin: 10px;
   vertical-align: top;
-  // align-self: flex-start;
 }
 
 .article_card {
   width: 300px;
-  /*border: 1px solid black;*/
-  /*border-radius: 10px;*/
+  border: 2px solid #DBDBDB;
+  border-radius: 5px;
   padding: 20px;
   vertical-align: top;
-  background-color: rgba(0, 0, 0, 0.15);
+  text-align: left;
+  background-color: #F6F6F6;
+}
+
+.article_card * {
+  background-color: #F6F6F6;
 }
 
 .article_item img {
@@ -77,6 +108,39 @@ span.vertical-divider {
   box-sizing: border-box;
   margin-bottom: 20px;
   padding: 0;
+}
+
+.article_item span.label.label-primary {
+  display: inline-block;
+  font-weight: 300;
+  font-size: 80%;
+  letter-spacing: .08em;
+  padding: .4em .6em;
+  margin: .2em;
+  background-color: #1D257F;
+}
+
+.article_item#title {
+  text-transform: capitalize;
+  font-weight: 900;
+  font-size: 18px;
+}
+
+header.article_item {
+  border-bottom: 1px solid #353535;
+  padding-bottom: 10px;
+  text-align: right;
+}
+
+header.article_item span#added-by-stats {
+  vertical-align: bottom;
+  margin-right: 10px;
+  color: #6E6E6E;
+  font-size: 90%;
+}
+
+div.reader button {
+  width: 100%;
 }
 
 .modal-body {

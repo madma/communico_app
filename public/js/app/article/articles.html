@@ -46,7 +46,7 @@
     <div ng-repeat="article in vm.articles | filter:search" class="flex_item masonry-brick" id="article_box">
       <div class="article_card">
         <header class="article_item">
-          <span>Added by {{vm.isInMyArticles(article) ? "you and " + (article.addedBy.length - 1).toString() + " other " + (article.addedBy.length > 2 || article.addedBy.length == 1 ? "users" : "user") : article.addedBy.length.toString() + (article.addedBy.length > 1 ? " users" : "user")}}</span>
+          <span id="added-by-stats">Added by {{vm.isInMyArticles(article) ? "you and " + (article.addedBy.length - 1).toString() + " other " + (article.addedBy.length > 2 || article.addedBy.length == 1 ? "users" : "user") : article.addedBy.length.toString() + (article.addedBy.length > 1 ? " users" : " user")}}</span>
           <span ng-show="!vm.isInMyArticles(article)">
             <button ng-click="vm.addArticle(article)" class="btn btn-default">
               <span class="glyphicon glyphicon-plus"></span>
@@ -54,12 +54,12 @@
           </span>
         </header>
         <div class="article_item" id="title">{{article.title}}</div>
-        <div class="article_item" id="publisher">Published by <a href="{{article.url}}">{{article.publisher}}</a></div>
+        <div class="article_item" id="publisher">Published by<br><a href="{{article.url}}" target="_blank">{{article.publisher}}</a></div>
         <div class="article_item" id="image"><img src="{{article.thumbnailImg}}" alt=""></div>
         <div class="article_item" id="description"><p>{{article.description}}</p></div>
         <div class="article_item" id="subjects">
           <span ng-repeat="subject in article.subjects" class="article_item" id="tags">
-            <span class="label label-primary">{{subject}}</span>
+            <span ng-show="subject" class="label label-primary">{{subject}}</span>
           </span>
         </div>
         <div class="reader" id="reader-btn-group">
@@ -82,6 +82,7 @@
             <span ng-repeat="subject in article.subjects" class="article_item" id="tags">
               <span class="label label-primary">{{subject}}</span>
             </span>
+            <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <!-- <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button> -->
           </div>
       </script>

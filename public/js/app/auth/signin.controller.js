@@ -12,17 +12,17 @@
 
     // BINDINGS
     vm.signUp = {
-      firstName: "Michael",
-      lastName: "Duran",
-      username: "madma",
-      email:    "michael@m-a-d.work",
-      password: "12345",
-      passwordConfirmation: "12345"
+      firstName: "",
+      lastName: "",
+      username: "",
+      email:    "",
+      password: "",
+      passwordConfirmation: ""
     };
     vm.submitSignUp = submitSignUp;
     vm.logIn = {
-      email_username:    "madma",
-      password: "12345"
+      email_username:    "",
+      password: ""
     };
     vm.submitLogIn = submitLogIn;
     vm.conflict = false;

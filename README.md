@@ -14,4 +14,4 @@
 ## Agile Development <a id="agile"></a>
 Check out the communico development process on <a href="https://trello.com/b/u7Mr4zoQ/wdi-project-4-communico-mean" target="_blank">Trello</a>!
 
-![Entity Relationship Diagrams for the data model]()
+![Entity Relationship Diagrams for the data model](./readme_assets/Communico_ERD.png)

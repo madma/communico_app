@@ -159,3 +159,8 @@ div#articles-nav {
 div.nav-input .input-group {
   margin: 20px 0;
 }
+
+img#beatles {
+  height: 100%;
+  width: auto;
+}

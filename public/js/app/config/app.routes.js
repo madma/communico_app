@@ -10,9 +10,15 @@
   function appRoutes($urlRouterProvider, $stateProvider) {
     $stateProvider
       .state("welcome", {
-        url:          "/",
+        url:          "/welcome",
         templateUrl:  "/js/app/auth/signin.html",
         controller:   "SignInController",
+        controllerAs: "vm"
+      })
+      .state("splash", {
+        url:          "/",
+        templateUrl:  "/js/app/auth/splash.html",
+        controller:   "SplashController",
         controllerAs: "vm"
       })
       .state("articles", {
@@ -50,6 +56,9 @@
     // $on is the Angular event listener: we are telling Angular to
     // listen to any $stateChangeStart events triggered in our app!
     $rootScope.$on("$stateChangeStart", function(event, toState) {
+
+      // if (toState == "welcome") $state.go("splash");
+
 
       // Check the new state's "authorized" property, which is not built
       // in to ui-router, it just happens to match the property I added

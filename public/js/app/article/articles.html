@@ -82,8 +82,8 @@
           <div class="modal-footer">
             <span ng-repeat="subject in article.subjects" class="article_item" id="tags">
               <span class="label label-primary">{{subject}}</span>
-            </span>
-            <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </span>&nbsp;&nbsp;
+            <button ng-click="$close()" type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove-sign"></button>
               <!-- <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button> -->
           </div>
       </script>

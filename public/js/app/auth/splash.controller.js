@@ -9,10 +9,15 @@
 
   function SplashController($log, authService, userService, $state, $timeout) {
     var vm = this;
+    vm.goToWelcome = goToWelcome;
 
-    $timeout(function() {
+    function goToWelcome () {
       $state.go("welcome");
-    }, 3000);
+    }
+
+    // $timeout(function() {
+    //   $state.go("welcome");
+    // }, 5000);
 
     $log.debug("SplashController loaded!");
   }

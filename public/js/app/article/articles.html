@@ -1,85 +1,79 @@
 <div id="articles-container" ng-cloak>
-  <!-- <h2>Articles Container</h2> -->
-<div id="articles-nav">
-  <ul class="nav nav-tabs">
-    <li ng-click="vm.myArticles = true; vm.getMyArticles()" ng-class="vm.myArticles ? 'active' : ''" role="presentation">
-      <a href="#/articles">My Articles</a>
-    </li>
-    <li ng-click="vm.myArticles = !vm.myArticles; vm.getArticles()" ng-class="!vm.myArticles ? 'active' : ''" role="presentation">
-      <a href="#/articles">All Articles</a>
-    </li>
-      <!-- <button class="btn btn-default">
+    <!-- <h2>Articles Container</h2> -->
+    <div id="articles-nav">
+        <ul class="nav nav-tabs">
+            <li ng-click="vm.myArticles = true; vm.getMyArticles()" ng-class="vm.myArticles ? 'active' : ''" role="presentation">
+                <a href="#/articles">My Articles</a>
+            </li>
+            <li ng-click="vm.myArticles = !vm.myArticles; vm.getArticles()" ng-class="!vm.myArticles ? 'active' : ''" role="presentation">
+                <a href="#/articles">All Articles</a>
+            </li>
+            <!-- <button class="btn btn-default">
         <span class="glyphicon glyphicon-plus"></span>Add
       </button> -->
-  </ul>
-
-
-  <div class="row">
-    <div class="col-sm-8 nav-input">
-      <form ng-submit="vm.submitLink(vm.userLink); vm.userLink = '' " id="submit-link">
-        <div class="input-group">
-          <span class="input-group-addon"><strong>What are you reading?</strong></span>
-          <input ng-model="vm.userLink" type="text" class="form-control" id="input-link" placeholder="Add an article by submitting a link.">
-          <span class="input-group-btn">
+        </ul>
+        <div class="row">
+            <div class="col-sm-8 nav-input">
+                <form ng-submit="vm.submitLink(vm.userLink); vm.userLink = '' " id="submit-link">
+                    <div class="input-group">
+                        <span class="input-group-addon"><strong>What are you reading?</strong></span>
+                        <input ng-model="vm.userLink" type="text" class="form-control" id="input-link" placeholder="Add an article by submitting a link.">
+                        <span class="input-group-btn">
             <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
-          </span>
-        </div>
-      </form>
-    </div>
-
-    <div class="col-sm-4 nav-input">
-        <div class="input-group">
-          <input ng-model="search.subjects" type="text" class="form-control" id="input-link" placeholder="Filter articles by tag...">
-          <span class="input-group-addon">
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-4 nav-input">
+                <div class="input-group">
+                    <input ng-model="search.subjects" type="text" class="form-control" id="input-link" placeholder="Filter articles by tag...">
+                    <span class="input-group-addon">
             <span class="glyphicon glyphicon-search"></span>
-          </span>
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
-
-  </div>
-
-
-  </div>
-
-
-  <div masonry class="flex_container" id="articles_container">
-    <div ng-repeat="article in vm.articles | filter:search" class="flex_item masonry-brick" id="article_box">
-      <div class="article_card">
-        <header class="article_item">
-          <span id="added-by-stats">Added by {{vm.isInMyArticles(article) ? "you and " + (article.addedBy.length - 1).toString() + " other " + (article.addedBy.length > 2 || article.addedBy.length == 1 ? "users" : "user") : article.addedBy.length.toString() + (article.addedBy.length > 1 ? " users" : " user")}}</span>
-          <span ng-show="!vm.isInMyArticles(article)">
+    <div masonry class="flex_container" id="articles_container">
+        <div ng-repeat="article in vm.articles | filter:search" class="flex_item masonry-brick" id="article_box">
+            <div class="article_card">
+                <header class="article_item">
+                    <span id="added-by-stats">Added by {{vm.isInMyArticles(article) ? "you and " + (article.addedBy.length - 1).toString() + " other " + (article.addedBy.length > 2 || article.addedBy.length == 1 ? "users" : "user") : article.addedBy.length.toString() + (article.addedBy.length > 1 ? " users" : " user")}}</span>
+                    <span ng-show="!vm.isInMyArticles(article)">
             <button ng-click="vm.addArticle(article)" class="btn btn-default">
               <span class="glyphicon glyphicon-plus"></span>
-            </button>
-          </span>
-        </header>
-        <div class="article_item" id="title">{{article.title}}</div>
-        <div class="article_item" id="publisher">Published by<br><a href="{{article.url}}" target="_blank">{{article.publisher}}</a></div>
-        <div class="article_item" id="image"><img src="{{article.thumbnailImg}}" alt=""></div>
-        <div class="article_item" id="description"><p>{{article.description}}</p></div>
-        <div class="article_item" id="subjects">
-          <span ng-repeat="subject in article.subjects" class="article_item" id="tags">
+                    </button>
+                    </span>
+                </header>
+                <div class="article_item" id="title">{{article.title}}</div>
+                <div class="article_item" id="publisher">Published by
+                    <br><a href="{{article.url}}" target="_blank">{{article.publisher}}</a></div>
+                <div class="article_item" id="image"><img src="{{article.thumbnailImg}}" alt=""></div>
+                <div class="article_item" id="description">
+                    <p>{{article.description}}</p>
+                </div>
+                <div class="article_item" id="subjects">
+                    <span ng-repeat="subject in article.subjects" class="article_item" id="tags">
             <span ng-show="subject" class="label label-primary">{{subject}}</span>
-          </span>
-        </div>
-        <div class="reader" id="reader-btn-group">
-          <button type="button" class="btn btn-default" ng-click="vm.open(article)">
-            <span class="glyphicon glyphicon-align-justify"></span>&nbsp;&nbsp;Reader View
-          </button>
+                    </span>
+                </div>
+                <div class="reader" id="reader-btn-group">
+                    <button type="button" class="btn btn-default" ng-click="vm.open(article)">
+                        <span class="glyphicon glyphicon-align-justify"></span>&nbsp;&nbsp;Reader View
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
-    </div>
-  </div>
-
-      <script type="text/ng-template" id="myModalContent.html">
-          <div class="modal-header">
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
             <h3 class="modal-title article_item" id="title">{{article.title}}</h3>
             <div class="article_item" id="publisher">Published by&nbsp;&nbsp;<a href="{{article.url}}" target="_blank">{{article.publisher}}</a></div>
             <div class="article_item" id="image"><img src="{{article.thumbnailImg}}" alt=""></div>
-          </div>
-          <div class="modal-body" ng-bind-html="article.text" ng-mouseup="logSelectedText()">
-          </div>
-          <div class="modal-footer">
+        </div>
+        <div class="modal-body" ng-bind-html="article.text" ng-mouseup="logSelectedText()">
+        </div>
+        <div class="modal-footer">
             <span ng-repeat="subject in article.subjects" class="article_item" id="tags">
               <span class="label label-primary">{{subject}}</span>
             </span>&nbsp;&nbsp;

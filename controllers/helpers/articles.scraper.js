@@ -127,6 +127,8 @@ module.exports = {
 // getCanonicalUrl("http://thelab.bleacherreport.com/more-than-a-sneaker/");
 // scrapeArticle("http://thelab.bleacherreport.com/more-than-a-sneaker/");
 
+scrapeArticle("http://www.nytimes.com/2016/04/10/magazine/the-new-europeans.html?rref=collection%2Fsectioncollection%2Fmagazine&action=click&contentCollection=magazine&region=stream&module=stream_unit&version=latest&contentPlacement=37&pgtype=sectionfront").then(article => console.log(article));
+
 // console.log("************************");
 // console.log("************************");
 

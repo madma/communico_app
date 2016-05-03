@@ -12,6 +12,12 @@ body {
   background-color: #E4E4E4;
 }
 
+span.center {
+  display: inline-block;
+  text-align: center;
+  font-size: 18px;
+}
+
 a { color: inherit; }
 
 a:hover { color: inherit; }

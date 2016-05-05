@@ -168,11 +168,14 @@ div.nav-input .input-group {
 
 div#beatles {
   background-color: #101010;
+  height: 100vh;
+  width: 100%;
 }
 
 img#beatles {
-  height: 100vh;
-  width: auto;
+  /*height: 100vh;*/
+  width: 100vh;
+  overflow: hidden;
 }
 
 [ui-view].content {

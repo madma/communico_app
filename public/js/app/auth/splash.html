@@ -3,14 +3,26 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-xs-12">
-      <p>Communico</p>
+  <div class="row" id="about">
+    <div class="col-xs-8 col-xs-offset-2">
+      <p>Communico is a place for you to save, annotate, and share the news you're reading. All you have to do is provide a link to the article you want to save, and Communico auto-magically gets all of the article's content! Now you have once centralized place to save and share the news that's important to you. You can also see what other users are reading and add their articles to your collection.</p>
+      <p>Try the live demo below!</p>
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" id="try">
     <div class="col-xs-12">
       <p>Give it a whirl!</p>
+    </div>
+    <div class="col-xs-8 col-xs-offset-2">
+        <form ng-submit="vm.submitLink(vm.userLink); vm.userLink = '' " id="submit-link">
+            <div class="input-group">
+                <span class="input-group-addon"><strong>What are you reading?</strong></span>
+                <input ng-model="vm.userLink" type="text" class="form-control" id="input-link" placeholder="Add an article by submitting a link.">
+                <span class="input-group-btn">
+    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+                </span>
+            </div>
+        </form>
     </div>
   </div>

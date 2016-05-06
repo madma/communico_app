@@ -177,6 +177,21 @@ div.beatles {
   overflow: hidden;
 }
 
+div#about {
+  min-height: 33%;
+}
+
+div#about > div {
+  padding-top: 16%;
+}
+
+div#try {
+  min-height: 33%;
+}
+
+div#try > div {
+  padding-top: 16%;
+}
 
 [ui-view].content {
   position: relative;

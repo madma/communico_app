@@ -166,17 +166,17 @@ div.nav-input .input-group {
   margin: 20px 0;
 }
 
-div#beatles {
+div.beatles {
   background-color: #101010;
+  background-image: url(/js/app/assets/BeatlesReadingNewspaper_EnlargedCropped@1x.png);
+  background-position: center;
+  background-size: auto 100vh;
+  background-repeat: no-repeat;
   height: 100vh;
-  width: 100%;
-}
-
-img#beatles {
-  /*height: 100vh;*/
-  width: 100vh;
+  width: 100vw;
   overflow: hidden;
 }
+
 
 [ui-view].content {
   position: relative;

@@ -36,25 +36,22 @@
 </head>
 <body class="container-fluid">
 
-  <header ng-controller="NavbarController as vm">
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <a ui-sref="welcome" class="navbar-brand">Communico</a>
-        <span class="center">
-          <ul class="nav navbar-nav">
-            <li><a ng-click="vm.goToDiv('about')">About</a></li>
-            <li><a></a></li>
-            <li><a ng-click="vm.goToDiv('try')">Try it!</a></li>
-          </ul>
-        </span>
-        <div class="pull-right">
-          <!-- <button ng-show="vm.authService.isLoggedIn();" ui-sref="profile" type="button" class="btn btn-default navbar-btn"><i class="glyphicon glyphicon-cog"></i> Profile</button> -->
-          <!-- <button ng-hide="vm.authService.isLoggedIn();" ui-sref="signin" type="button" class="btn btn-default navbar-btn navbar-right">Sign in</button> -->
-          <button ng-click="vm.logOut();" ng-show="vm.authService.isLoggedIn()" type="button" class="btn btn-default navbar-btn navbar-right">Sign out</button>
-        </div>
-      </div>
-    </nav>
-  </header>
+
+    <header ng-controller="NavbarController as vm">
+      <nav class="navbar navbar-default navbar-fixed-top">
+          <a ui-sref="splash" class="navbar-brand col-xs-4">Communico</a>
+            <ul class="nav navbar-nav col-xs-4">
+              <li class="col-xs-6"><a ng-click="vm.goToDiv('about')">About</a></li>
+              <li class="col-xs-6"><a ng-click="vm.goToDiv('try')">Demo</a></li>
+            </ul>
+          <div class="col-xs-4">
+            <!-- <button ng-show="vm.authService.isLoggedIn();" ui-sref="profile" type="button" class="btn btn-default navbar-btn"><i class="glyphicon glyphicon-cog"></i> Profile</button> -->
+            <button ng-hide="vm.authService.isLoggedIn();" ui-sref="welcome" type="button" class="btn btn-default navbar-btn">Sign in</button>
+            <button ng-click="vm.logOut();" ng-show="vm.authService.isLoggedIn()" type="button" class="btn btn-default navbar-btn">Sign out</button>
+          </div>
+      </nav>
+    </header>
+
 
   <!-- <h1>Communico App</h1> -->
 

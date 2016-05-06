@@ -1,20 +1,18 @@
-  <div class="row">
+<div class="row">
     <div class="col-xs-12 beatles">
     </div>
-  </div>
-
-  <div class="row" id="about">
+</div>
+<div class="row" id="about">
     <div class="col-xs-8 col-xs-offset-2">
-      <p>Communico is a place for you to save, annotate, and share the news you're reading. All you have to do is provide a link to the article you want to save, and Communico auto-magically gets all of the article's content! Now you have once centralized place to save and share the news that's important to you. You can also see what other users are reading and add their articles to your collection.</p>
-      <p>Try the live demo below!</p>
+        <p>Communico is a place for you to save, annotate, and share the news you're reading. All you have to do is provide a link to the article you want to save, and Communico auto-magically gets all of the article's content! Now you have once centralized place to save and share the news that's important to you. You can also see what other users are reading and add their articles to your collection.</p>
+        <p>Try the live demo below!</p>
     </div>
-  </div>
-
-  <div class="row" id="try">
+</div>
+<div class="row" id="try">
     <div class="col-xs-12">
-      <p>Give it a whirl!</p>
+        <p>Give it a whirl!</p>
     </div>
-    <div class="col-xs-8 col-xs-offset-2">
+    <div class="col-xs-10 col-xs-offset-1">
         <form ng-submit="vm.submitLink(vm.userLink); vm.userLink = '' " id="submit-link">
             <div class="input-group">
                 <span class="input-group-addon"><strong>What are you reading?</strong></span>
@@ -24,5 +22,43 @@
                 </span>
             </div>
         </form>
+        <div masonry class="flex_container" id="articles_container">
+            <div ng-repeat="article in vm.articles | filter:search" class="flex_item masonry-brick" id="article_box">
+                <div class="article_card">
+                    <div class="article_item" id="title">{{article.title}}</div>
+                    <div class="article_item" id="publisher">Published by
+                        <br><a href="{{article.url}}" target="_blank">{{article.publisher}}</a></div>
+                    <div class="article_item" id="image"><img src="{{article.thumbnailImg}}" alt=""></div>
+                    <div class="article_item" id="description">
+                        <p>{{article.description}}</p>
+                    </div>
+                    <div class="article_item" id="subjects">
+                        <span ng-repeat="subject in article.subjects" class="article_item" id="tags">
+                <span ng-show="subject" class="label label-primary">{{subject}}</span>
+                        </span>
+                    </div>
+                    <div class="reader" id="reader-btn-group">
+                        <button type="button" class="btn btn-default" ng-click="vm.open(article)">
+                            <span class="glyphicon glyphicon-align-justify"></span>&nbsp;&nbsp;Reader View
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/ng-template" id="myModalContent.html">
+            <div class="modal-header">
+                <h3 class="modal-title article_item" id="title">{{article.title}}</h3>
+                <div class="article_item" id="publisher">Published by&nbsp;&nbsp;<a href="{{article.url}}" target="_blank">{{article.publisher}}</a></div>
+                <div class="article_item" id="image"><img src="{{article.thumbnailImg}}" alt=""></div>
+            </div>
+            <div class="modal-body" ng-bind-html="article.text" ng-mouseup="logSelectedText()">
+            </div>
+            <div class="modal-footer">
+                <span ng-repeat="subject in article.subjects" class="article_item" id="tags">
+                  <span class="label label-primary">{{subject}}</span>
+                </span>&nbsp;&nbsp;
+                <button ng-click="$close()" type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove-sign"></button>
+              </div>
+          </script>
     </div>
   </div>

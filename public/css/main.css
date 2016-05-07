@@ -10,6 +10,7 @@ body {
   padding: 50px;
   text-align: center;
   background-color: #E4E4E4;
+  min-height: 300vh;
 }
 
 span.center {
@@ -178,11 +179,31 @@ div.beatles {
 }
 
 div#about {
-  min-height: 33%;
+  height: 33%;
+  /*border: 2px solid red;*/
 }
 
+/*div#about:before, div#about:after {
+  display: none;
+  content: none;
+}
+
+div#about:after {
+  clear: none;
+}*/
+
 div#about > div {
-  padding-top: 16%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  border-radius: 0;
+  /*padding-top: 16%;*/
+  /*height: 100%;*/
+  /*width: 100%;*/
+  /*border: 2px solid green;*/
 }
 
 div#try {
@@ -190,7 +211,14 @@ div#try {
 }
 
 div#try > div {
-  padding-top: 16%;
+  /*padding-top: 16%;*/
+}
+
+div.demo#articles_container {
+  border: 2px dashed #BBBBBB;
+  min-height: 33vh;
+  margin: 10px 0 0 0;
+  border-radius: 4px;
 }
 
 [ui-view].content {

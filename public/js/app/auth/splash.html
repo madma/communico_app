@@ -3,14 +3,14 @@
     </div>
 </div>
 <div class="row" id="about">
-    <div class="col-xs-8 col-xs-offset-2">
-        <p>Communico is a place for you to save, annotate, and share the news you're reading. All you have to do is provide a link to the article you want to save, and Communico auto-magically gets all of the article's content! Now you have once centralized place to save and share the news that's important to you. You can also see what other users are reading and add their articles to your collection.</p>
-        <p>Try the live demo below!</p>
+    <div class="col-xs-12 jumbotron">
+        <p class="col-xs-10" style="border-bottom: 1px solid #BBBBBB; padding-bottom: 15px;">Communico is a place for you to save, annotate, and share the news you're reading. All you have to do is provide a link to the article you want to save, and Communico auto-magically gets all of the article's content! Now you have once centralized place to save and share the news that's important to you. You can also see what other users are reading and add their articles to your collection.</p>
+        <p class="col-xs-10" style="padding-top: 0px;"><small style="margin:0; padding: 0;">Try the live demo below.</small><br><span class="glyphicon glyphicon-menu-down"></span></p>
     </div>
 </div>
 <div class="row" id="try">
-    <div class="col-xs-12">
-        <p>Give it a whirl!</p>
+    <div class="col-xs-8 col-xs-offset-2">
+        <h1>Give it a whirl!<br><small>Communico automatically grabs an article's full content.</small></h1>
     </div>
     <div class="col-xs-10 col-xs-offset-1">
         <form ng-submit="vm.submitLink(vm.userLink); vm.userLink = '' " id="submit-link">
@@ -22,7 +22,8 @@
                 </span>
             </div>
         </form>
-        <div masonry class="flex_container" id="articles_container">
+        <h1 ng-show="vm.articles.length > 0"><small>Excellent! Sign up to start saving and sharing the news that's important to you.</small></h1>
+        <div masonry class="flex_container demo" id="articles_container">
             <div ng-repeat="article in vm.articles | filter:search" class="flex_item masonry-brick" id="article_box">
                 <div class="article_card">
                     <div class="article_item" id="title">{{article.title}}</div>

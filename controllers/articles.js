@@ -54,13 +54,11 @@ var show = function(req, res, next) {
 
 var scrape = function(req, res, next) {
   console.log("REQ IS: ", req.body);
-  var options = new scraper.Options(req.body.articleUrl);
-  console.log(options);
   console.log("SCRAPING.................");
   scraper
-    .getDescription(options)
-    .then(function(description) {
-      res.json({description: description});
+    .scrapeArticle(req.body.articleUrl)
+    .then(function(articleData) {
+      res.json({article: articleData});
     })
     .catch(function(err) {
       next(err);

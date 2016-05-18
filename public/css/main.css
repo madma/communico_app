@@ -10,6 +10,13 @@ body {
   padding: 50px;
   text-align: center;
   background-color: #E4E4E4;
+  min-height: 300vh;
+}
+
+span.center {
+  display: inline-block;
+  text-align: center;
+  font-size: 18px;
 }
 
 a { color: inherit; }
@@ -160,13 +167,58 @@ div.nav-input .input-group {
   margin: 20px 0;
 }
 
-div#beatles {
+div.beatles {
   background-color: #101010;
+  background-image: url(/js/app/assets/BeatlesReadingNewspaper_EnlargedCropped@1x.png);
+  background-position: center;
+  background-size: auto 100vh;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
 
-img#beatles {
-  height: 100vh;
-  width: auto;
+div#about {
+  height: 33%;
+  /*border: 2px solid red;*/
+}
+
+/*div#about:before, div#about:after {
+  display: none;
+  content: none;
+}
+
+div#about:after {
+  clear: none;
+}*/
+
+div#about > div {
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  border-radius: 0;
+  /*padding-top: 16%;*/
+  /*height: 100%;*/
+  /*width: 100%;*/
+  /*border: 2px solid green;*/
+}
+
+div#try {
+  min-height: 33%;
+}
+
+div#try > div {
+  /*padding-top: 16%;*/
+}
+
+div.demo#articles_container {
+  border: 2px dashed #BBBBBB;
+  min-height: 33vh;
+  margin: 10px 0 0 0;
+  border-radius: 4px;
 }
 
 [ui-view].content {

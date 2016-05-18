@@ -125,6 +125,7 @@ span.vertical-divider {
   padding: .4em .6em;
   margin: .2em;
   background-color: #1D257F;
+  white-space: normal;
 }
 
 .article_item#title {

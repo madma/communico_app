@@ -1,6 +1,6 @@
 var request = require("request-promise");
 var cheerio = require("cheerio");
-var read = require("node-read");
+var read = require("node-reading-it");
 
 function ArticleData() {
   this.title = null;

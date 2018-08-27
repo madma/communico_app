@@ -60,7 +60,7 @@ app.use(function(err, req, res, next) {
   // In development, the error handler will print stacktrace.
   err = (app.get('env') === 'development') ? err : {};
   res.status(err.status || 500);
-  res.status(err.status).json('error', {
+  res.status(err.status).json({
     message: err.message,
     error: err
   });

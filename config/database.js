@@ -15,7 +15,7 @@ if (!env.MONGODB_URI) {
 }
 
 if (!mongoose.connection._hasOpened) {
-  mongoose.connect(dbUri);
+  mongoose.connect(dbUri, {useNewUrlParser: true});
 }
 
 module.exports = mongoose;
